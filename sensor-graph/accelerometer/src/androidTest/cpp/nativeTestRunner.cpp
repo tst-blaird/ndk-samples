@@ -80,11 +80,8 @@ JNIEXPORT void JNI_OnUnload(JavaVM * vm, void *)
 
 jboolean JNICALL
 NATIVE_TEST_RUNNER(runUnitTests)(JNIEnv *env, jobject obj) {
-    //int argc = 1;
-    //char* argv[] = { "AndroidNativeUnitTests", NULL };
 
     try {
-        //testing::InitGoogleTest(&argc, argv);
         testing::InitGoogleTest();
         int result = RUN_ALL_TESTS();
         return (result == 0) ? JNI_TRUE : JNI_FALSE;

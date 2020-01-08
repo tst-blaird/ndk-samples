@@ -23,14 +23,12 @@ import static org.junit.Assert.*;
 public class NativeUnitTests {
 
     private Context testContext;
-    private File filesPath;
 
     public NativeUnitTests() {
 
         try {
             // Context of the app under test.
             testContext = InstrumentationRegistry.getContext();
-            filesPath = testContext.getFilesDir();
 
             AssetManager assetManager = testContext.getResources().getAssets();
             String items[] = testContext.getResources().getAssets().list("");
@@ -52,9 +50,9 @@ public class NativeUnitTests {
     @Test
     public void runTheNativeTests() {
 
-        assertEquals(setUpUnitTests(), true);
+        assertTrue(setUpUnitTests());
 
         NativeTestRunner runner = new NativeTestRunner();
-        assertEquals(runner.runUnitTests(), true);
+        assertTrue(runner.runUnitTests());
     }
 }

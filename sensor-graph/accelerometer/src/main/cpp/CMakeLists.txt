@@ -35,26 +35,32 @@ else(Java_FOUND)
     error( "Java not found!" )
 endif(Java_FOUND)
 
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror")
 
-add_library(accelerometergraph SHARED
-            sensorgraph.cpp)
+add_library(
+        accelerometergraph
+        SHARED
+        sensorgraph.cpp)
 
 # Include libraries needed for accelerometergraph lib
-target_link_libraries(accelerometergraph
-                      android
-                      GLESv2
-                      log)
+target_link_libraries(
+        accelerometergraph
+        android
+        GLESv2
+        log)
 
 set(GOOGLETEST_ROOT ${ANDROID_NDK}/sources/third_party/googletest)
 add_library(gtest STATIC ${GOOGLETEST_ROOT}/src/gtest_main.cc ${GOOGLETEST_ROOT}/src/gtest-all.cc)
 target_include_directories(gtest PRIVATE ${GOOGLETEST_ROOT})
 target_include_directories(gtest PUBLIC ${GOOGLETEST_ROOT}/include)
 
-add_library(NativeTestRunner
+add_library(
+        NativeTestRunner
         SHARED
         ${TEST_SRC_DIR}/cpp/nativeTestRunner.cpp
         ${LIB_NATIVE_TEST_JAVA_HEADER})
 
-target_link_libraries (NativeTestRunner gtest accelerometergraph)
+target_link_libraries (
+        NativeTestRunner
+        gtest
+        accelerometergraph)
