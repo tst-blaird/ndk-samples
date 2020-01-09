@@ -42,6 +42,10 @@ add_library(
         SHARED
         sensorgraph.cpp)
 
+# Specifies a path to native header files.
+include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR})
+
 # Include libraries needed for accelerometergraph lib
 target_link_libraries(
         accelerometergraph
@@ -58,6 +62,7 @@ add_library(
         NativeTestRunner
         SHARED
         ${TEST_SRC_DIR}/cpp/nativeTestRunner.cpp
+        ${TEST_SRC_DIR}/cpp/test_accelerometer.cpp
         ${LIB_NATIVE_TEST_JAVA_HEADER})
 
 target_link_libraries (
